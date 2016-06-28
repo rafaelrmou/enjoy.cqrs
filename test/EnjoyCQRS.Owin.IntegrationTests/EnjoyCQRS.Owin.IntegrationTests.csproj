@@ -119,13 +119,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BarWritableController.cs" />
     <Compile Include="Infrastructure\AutofacCommandDispatcher.cs" />
     <Compile Include="Controllers\FooWritableController.cs" />
     <Compile Include="Infrastructure\AutofacEventRouter.cs" />
     <Compile Include="Infrastructure\OwinMetadataProvider.cs" />
+    <Compile Include="Infrastructure\ServerTestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Infrastructure\Startup.cs" />
     <Compile Include="FooWritableTests.cs" />
+    <Compile Include="UICommandAttributeTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

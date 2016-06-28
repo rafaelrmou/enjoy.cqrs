@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Autofac;
 using EnjoyCQRS.Commands;
@@ -17,7 +18,7 @@ namespace EnjoyCQRS.Owin.IntegrationTests.Infrastructure
         protected override async Task RouteAsync<TCommand>(TCommand command)
         {
             var handler = _scope.Resolve<ICommandHandler<TCommand>>();
-
+            
             await handler.ExecuteAsync(command);
         }
     }

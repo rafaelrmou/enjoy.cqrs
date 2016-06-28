@@ -1,3 +1,4 @@
+using System;
 using System.Reflection;
 using System.Web.Http;
 using Autofac;
@@ -63,7 +64,7 @@ namespace EnjoyCQRS.Owin.IntegrationTests.Infrastructure
             {
                 DependencyResolver = new AutofacWebApiDependencyResolver(container)
             };
-
+            
             config.MapHttpAttributeRoutes();
             config.Routes.MapHttpRoute("DefaultApi", "api/{controller}/{id}", new { id = RouteParameter.Optional });
             

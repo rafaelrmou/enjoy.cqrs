@@ -11,7 +11,7 @@ using Xunit;
 
 namespace EnjoyCQRS.Owin.IntegrationTests
 {
-    public class FooWritableTests
+    public class FooWritableTests : ServerTestBase
     {
         public const string CategoryName = "Integration";
         public const string CategoryValue = "Owin";
@@ -22,7 +22,7 @@ namespace EnjoyCQRS.Owin.IntegrationTests
         {
             var eventStore = new InMemoryEventStore();
 
-            var server = TestServerFactory(eventStore);
+            var server = CreateTestServer(eventStore);
 
             var response = await server.CreateRequest("/command/foo").PostAsync();
 
@@ -39,7 +39,7 @@ namespace EnjoyCQRS.Owin.IntegrationTests
         {
             var eventStore = new InMemoryEventStore();
 
-            var server = TestServerFactory(eventStore);
+            var server = CreateTestServer(eventStore);
 
             var response = await server.CreateRequest("/command/foo").PostAsync();
 
@@ -60,7 +60,7 @@ namespace EnjoyCQRS.Owin.IntegrationTests
         {
             var eventStore = new InMemoryEventStore();
 
-            var server = TestServerFactory(eventStore);
+            var server = CreateTestServer(eventStore);
 
             var response = await server.CreateRequest("/command/foo/flood/4").PostAsync();
 
@@ -68,19 +68,7 @@ namespace EnjoyCQRS.Owin.IntegrationTests
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
-
-        private TestServer TestServerFactory(IEventStore eventStore)
-        {
-            var startup = new Startup
-            {
-                EventStore = eventStore
-            };
-
-            var testServer = TestServer.Create(startup.Configuration);
-
-            return testServer;
-        }
-
+        
         private Guid ExtractAggregateIdFromResponseContent(string content)
         {
             var match = Regex.Match(content, "{\"AggregateId\":\"(.*)\"}", RegexOptions.IgnoreCase | RegexOptions.Compiled);

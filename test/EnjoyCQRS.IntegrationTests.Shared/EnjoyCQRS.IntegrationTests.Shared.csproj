@@ -78,6 +78,7 @@
     <Compile Include="TestSuit\EventStoreMethods.cs" />
     <Compile Include="TestSuit\EventStoreTestSuit.cs" />
     <Compile Include="TestSuit\EventStoreWrapper.cs" />
+    <Compile Include="UICommandNameAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
